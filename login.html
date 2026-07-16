@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Login - Smart Attendance Analytics</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+
+margin:0;
+padding:0;
+font-family:Arial, Helvetica, sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+
+background:linear-gradient(-45deg,#0d6efd,#36b9cc,#4e73df,#1cc88a);
+background-size:400% 400%;
+animation:gradientBG 15s ease infinite;
+
+}
+
+@keyframes gradientBG{
+
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+
+}
+
+/* Floating Circles */
+
+.circles{
+
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:-1;
+
+}
+
+.circles li{
+
+position:absolute;
+display:block;
+list-style:none;
+width:20px;
+height:20px;
+background:rgba(255,255,255,0.2);
+animation:animate 25s linear infinite;
+bottom:-150px;
+border-radius:50%;
+
+}
+
+.circles li:nth-child(1){left:25%;width:80px;height:80px;}
+.circles li:nth-child(2){left:10%;animation-delay:2s;}
+.circles li:nth-child(3){left:70%;width:30px;height:30px;}
+.circles li:nth-child(4){left:40%;width:60px;height:60px;animation-delay:4s;}
+.circles li:nth-child(5){left:65%;width:20px;height:20px;}
+.circles li:nth-child(6){left:75%;width:100px;height:100px;}
+.circles li:nth-child(7){left:35%;width:140px;height:140px;}
+.circles li:nth-child(8){left:50%;width:25px;height:25px;}
+.circles li:nth-child(9){left:20%;width:18px;height:18px;}
+.circles li:nth-child(10){left:85%;width:120px;height:120px;}
+
+@keyframes animate{
+
+0%{
+
+transform:translateY(0) rotate(0deg);
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-1000px) rotate(720deg);
+opacity:0;
+
+}
+
+}
+
+/* Sparkling Stars */
+
+.stars{
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+z-index:-1;
+
+}
+
+.stars span{
+
+position:absolute;
+
+width:4px;
+
+height:4px;
+
+background:white;
+
+border-radius:50%;
+
+box-shadow:0 0 12px white;
+
+animation:twinkle 2s infinite alternate;
+
+}
+
+.stars span:nth-child(1){top:15%;left:20%;}
+.stars span:nth-child(2){top:40%;left:70%;}
+.stars span:nth-child(3){top:75%;left:35%;}
+.stars span:nth-child(4){top:60%;left:85%;}
+.stars span:nth-child(5){top:25%;left:50%;}
+
+@keyframes twinkle{
+
+from{
+
+opacity:.2;
+
+transform:scale(.8);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1.5);
+
+}
+
+}
+
+.login-card{
+
+width:430px;
+
+padding:35px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,0.18);
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.3);
+
+box-shadow:
+
+0 0 25px rgba(13,110,253,.5),
+
+0 15px 40px rgba(0,0,0,.35);
+
+animation:fadeIn 1s;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.login-title{
+
+text-align:center;
+
+font-size:32px;
+
+font-weight:bold;
+
+color:white;
+
+text-shadow:0 0 12px rgba(255,255,255,.6);
+
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+font-size:18px;
+
+color:white;
+
+margin-bottom:25px;
+
+}
+
+.form-control{
+
+height:50px;
+
+border-radius:12px;
+
+border:none;
+
+font-size:16px;
+
+}
+
+.form-control:focus{
+
+box-shadow:0 0 15px #4e73df;
+
+}
+
+.btn-success{
+
+height:50px;
+
+font-size:18px;
+
+font-weight:bold;
+
+border-radius:12px;
+
+background:linear-gradient(45deg,#198754,#20c997);
+
+border:none;
+
+transition:.4s;
+
+}
+
+.btn-success:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 0 20px #20c997;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="circles">
+
+<ul>
+
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+
+</ul>
+
+</div>
+
+<div class="stars">
+
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+<div class="login-card">
+
+<h1 class="login-title">
+
+🎓
+
+<br>
+
+Smart Attendance Analytics
+
+</h1>
+
+<p class="subtitle">
+
+Administrator Login Portal
+
+</p>
+
+{% if message %}
+
+<div class="alert alert-danger">
+
+{{ message }}
+
+</div>
+
+{% endif %}
+
+<form method="POST">
+
+<label class="fw-bold text-white">
+
+Username
+
+</label>
+
+<input
+type="text"
+name="username"
+class="form-control"
+placeholder="Enter Username"
+required>
+
+<br>
+
+<label class="fw-bold text-white">
+
+Password
+
+</label>
+
+<div class="input-group">
+
+<input
+type="password"
+name="password"
+id="password"
+class="form-control"
+placeholder="Enter Password"
+required>
+
+<button
+type="button"
+class="btn btn-outline-secondary"
+onclick="togglePassword()">
+
+👁
+
+</button>
+
+</div>
+
+<br>
+
+<button
+class="btn btn-success w-100">
+
+Login
+
+</button>
+
+</form>
+
+<div class="text-center text-white mb-3">
+
+<span id="clock"></span>
+
+</div>
+
+<hr>
+
+<p class="text-center text-white">
+
+Smart Attendance Analytics System
+
+<br>
+
+Developed by <b>Madugula Nandini</b>
+
+<br>
+
+B.Tech Final Year Project
+
+</p>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+var x=document.getElementById("password");
+
+if(x.type==="password"){
+
+x.type="text";
+
+}
+
+else{
+
+x.type="password";
+
+}
+
+}
+
+function updateClock(){
+
+const now=new Date();
+
+document.getElementById("clock").innerHTML=
+
+"📅 "+now.toLocaleDateString()+" | ⏰ "+now.toLocaleTimeString();
+
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+</script>
+
+</body>
+
+</html>

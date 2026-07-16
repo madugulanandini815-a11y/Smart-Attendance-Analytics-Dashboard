@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>{{ department }} Faculty</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:#f4f7fc;
+        }
+
+        .header{
+            background:linear-gradient(90deg,#198754,#20c997);
+            color:white;
+            padding:20px;
+            border-radius:15px;
+            margin-bottom:25px;
+        }
+
+        .card{
+            border:none;
+            border-radius:15px;
+            box-shadow:0 5px 15px rgba(0,0,0,.15);
+        }
+
+        table{
+            background:white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container mt-4">
+
+<div class="header d-flex justify-content-between align-items-center">
+
+<div>
+
+<h2>
+
+👩‍🏫 {{ department }} Faculty
+
+</h2>
+
+<p>
+
+Department Wise Faculty Details
+
+</p>
+
+</div>
+
+<div>
+
+<a href="/departments" class="btn btn-light">
+
+← Back
+
+</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-body">
+
+<table class="table table-bordered table-hover text-center">
+
+<thead class="table-success">
+
+<tr>
+
+<th>ID</th>
+
+<th>Faculty Name</th>
+
+<th>Subject</th>
+
+<th>Email</th>
+
+<th>Phone</th>
+
+<th>Department</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for f in faculty %}
+
+<tr>
+
+<td>{{ f[0] }}</td>
+
+<td>{{ f[1] }}</td>
+
+<td>{{ f[2] }}</td>
+
+<td>{{ f[3] }}</td>
+
+<td>{{ f[4] }}</td>
+
+<td>{{ f[5] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
